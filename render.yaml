@@ -3,7 +3,7 @@ services:
     name: quiz-flask
     env: python
     plan : free
-    buildCommand: ""
+    buildCommand: "pip install -r requirements.txt"
     startCommand: gunicorn app:app
     # chemin de healthcheck utilisé par Render (optionnel mais pratique)
     healthCheckPath: "/healthz"
