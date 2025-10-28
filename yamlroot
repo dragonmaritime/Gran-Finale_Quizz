@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: quiz-flask
+    env: python
+    buildCommand: ""
+    startCommand: gunicorn app:app
+    # chemin de healthcheck utilisé par Render (optionnel mais pratique)
+    healthCheckPath: "/healthz"
+    # instances: 1   # décommenter/s'adapter si tu veux forcer le nombre d'instances
