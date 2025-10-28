@@ -2,6 +2,7 @@ services:
   - type: web
     name: quiz-flask
     env: python
+    plan : free
     buildCommand: ""
     startCommand: gunicorn app:app
     # chemin de healthcheck utilisé par Render (optionnel mais pratique)
