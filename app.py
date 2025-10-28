@@ -58,7 +58,6 @@ for q in questions:
         "correct": is_correct
     })
 
-            })
 
         return render_template("quiz.html", questions=questions, results=results, score=score, total=len(questions))
 
