@@ -26,20 +26,38 @@ def quiz():
             answers[qid] = request.form.get(qid, "")
 
         # Calcul du score simple : compare la réponse (string) à la bonne réponse
-        score = 0
-        results = []
-        for q in questions:
-            qid = str(q.get("id", q.get("question", "") ))
-            user_ans = (answers.get(qid) or "").strip()
-            correct_ans = str(q.get("answer", "")).strip()
-            is_correct = user_ans.lower() == correct_ans.lower()
-            if is_correct:
-                score += 1
-            results.append({
-                "question": q.get("question"),
-                "your_answer": user_ans,
-                "correct_answer": correct_ans,
-                "correct": is_correct
+        # Calcul du score : compare la réponse à la bonne réponse ou aux mots-clés
+score = 0
+results = []
+for q in questions:
+    qid = str(q.get("id", q.get("question", "")))
+    user_ans = (answers.get(qid) or "").strip().lower()
+
+    is_correct = False
+    correct_ans = ""
+
+    # Cas 1 : réponse exacte
+    if "answer" in q:
+        correct_ans = str(q.get("answer", "")).strip().lower()
+        is_correct = user_ans == correct_ans
+
+    # Cas 2 : validation par mots-clés
+    elif "keywords" in q:
+        required_keywords = [kw.lower() for kw in q["keywords"]]
+        # Ici : au moins un mot-clé valide
+        is_correct = any(kw in user_ans for kw in required_keywords)
+        correct_ans = "Mots-clés attendus : " + ", ".join(required_keywords)
+
+    if is_correct:
+        score += 1
+
+    results.append({
+        "question": q.get("question"),
+        "your_answer": user_ans,
+        "correct_answer": correct_ans,
+        "correct": is_correct
+    })
+
             })
 
         return render_template("quiz.html", questions=questions, results=results, score=score, total=len(questions))
