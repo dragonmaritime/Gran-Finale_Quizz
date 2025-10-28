@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import json
 import os
 
@@ -56,10 +56,10 @@ def quiz():
                 "correct": is_correct
             })
 
-        # 👉 Ce return doit être DANS le if POST
+        # Retourne la page avec les résultats
         return render_template("quiz.html", questions=questions, results=results, score=score, total=len(questions))
 
-    # 👉 Ce return est pour le GET
+    # Cas GET : affiche le formulaire vide
     return render_template("quiz.html", questions=questions, results=None, score=0, total=len(questions))
 
 # Health check simple (utile pour Render)
