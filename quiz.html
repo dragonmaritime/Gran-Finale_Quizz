@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+</head>
+<body>
+    <h1>Mon Quiz</h1>
+
+    {% if results %}
+        <h2>Résultats</h2>
+        <p>Score : {{ score }}/{{ total }}</p>
+        <ul>
+            {% for r in results %}
+                <li>
+                    <strong>{{ r.question }}</strong><br>
+                    Votre réponse : {{ r.your_answer }}<br>
+                    {% if r.correct %}
+                        ✅ Correct !
+                    {% else %}
+                        ❌ Faux — Réponse attendue : {{ r.correct_answer }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="/">Rejouer</a>
+    {% else %}
+        <form method="post">
+            {% for q in questions %}
+                <p><strong>{{ q.question }}</strong></p>
+
+                {% if q.type == "text" %}
+                    <input type="text" name="{{ q.id }}">
+                {% elif q.type == "mcq" %}
+                    {% for choice in q.choices %}
+                        <label>
+                            <input type="radio" name="{{ q.id }}" value="{{ choice }}">
+                            {{ choice }}
+                        </label><br>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+            <button type="submit">Valider</button>
+        </form>
+    {% endif %}
+</body>
+</html>
