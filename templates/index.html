@@ -1,4 +1,17 @@
-<video width="640" height="360" controls autoplay>
-  <source src="{{ url_for('static', filename='video/intro-red-velvet.mp4') }}" type="video/mp4">
+<video autoplay muted loop id="bg-video">
+  <source src="{{ url_for('static', filename='video/intro.mp4') }}" type="video/mp4">
   Votre navigateur ne supporte pas la vidéo.
 </video>
+
+<style>
+#bg-video {
+  position: fixed;   /* reste collé à l’écran */
+  top: 0;
+  left: 0;
+  width: 100%;       /* largeur = 100% de la fenêtre */
+  height: 100%;      /* hauteur = 100% de la fenêtre */
+  object-fit: cover; /* recouvre tout l’écran sans bandes noires */
+  z-index: -1;       /* passe derrière le contenu */
+}
+</style>
+
