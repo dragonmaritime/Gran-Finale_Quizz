@@ -12,6 +12,11 @@ def load_questions():
             return json.load(f)
     except FileNotFoundError:
         return []
+# page d'accueil 
+
+@app.route("/")
+def index():
+    return render_template("index.html")
 
 # Page principale : affiche le quiz (GET) et reçoit les réponses (POST)
 @app.route("/", methods=["GET", "POST"])
