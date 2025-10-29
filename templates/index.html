@@ -1,17 +1,23 @@
-<video autoplay muted id="bg-video">
-  <source src="{{ url_for('static', filename='video/velvetcartoonlike.mp4') }}" type="video/mp4">
-  Votre navigateur ne supporte pas la vidéo.
-</video>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gran Finale Quiz</title>
+  <!-- Lien vers ton fichier CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Vidéo de fond -->
+  <video autoplay muted playsinline id="bg-video">
+    <source src="{{ url_for('static', filename='video/intro.mp4') }}" type="video/mp4">
+    Votre navigateur ne supporte pas la vidéo.
+  </video>
 
-<style>
-#bg-video {
-  position: fixed;   /* reste collé à l’écran */
-  top: 0;
-  left: 0;
-  width: 100%;       /* largeur = 100% de la fenêtre */
-  height: 100%;      /* hauteur = 100% de la fenêtre */
-  object-fit: cover; /* recouvre tout l’écran sans bandes noires */
-  z-index: -1;       /* passe derrière le contenu */
-}
-</style>
+  <!-- Contenu par-dessus la vidéo -->
+  <div id="quiz-content">
+    <h1>Bienvenue au Grand Quiz</h1>
+    <a href="/quiz" class="start-btn">Commencer le quiz</a>
+  </div>
+</body>
+</html>
 
