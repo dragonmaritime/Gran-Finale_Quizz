@@ -1,0 +1,36 @@
+/* La vidéo occupe tout l'écran */
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* recouvre tout l’écran sans bandes noires */
+  z-index: -1;       /* passe derrière le contenu */
+}
+
+/* Contenu affiché par-dessus la vidéo */
+#quiz-content {
+  position: relative;
+  z-index: 1;        /* au-dessus de la vidéo */
+  text-align: center;
+  margin-top: 20%;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+/* Bouton "Commencer le quiz" */
+.start-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: crimson;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 1.2em;
+  transition: background 0.3s ease;
+}
+
+.start-btn:hover {
+  background: darkred;
+}
